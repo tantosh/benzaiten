@@ -1,2 +1,2 @@
 # benzaiten
-Story processing &amp; analysis
+## Automatic Text Summarazation tool
