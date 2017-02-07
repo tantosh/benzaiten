@@ -87,7 +87,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
-*.sqlite3
 
 # Visual Studio
 *.pyproj
@@ -96,3 +95,6 @@ ENV/
 #Eclipse
 .gitignore.orig
 .project
+
+#Django
+*.sqlite3
