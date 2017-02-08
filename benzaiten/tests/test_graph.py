@@ -1,7 +1,7 @@
 import unittest
 from benzaiten.graph import GraphBuilder
 
-class GraphBuilderTest(unittest.TestCase):
+class GraphTest(unittest.TestCase):
     
     def setUp(self):
         self.builder = GraphBuilder()
@@ -9,6 +9,10 @@ class GraphBuilderTest(unittest.TestCase):
     def test_build_short_text(self):
         graph = self.builder.buildGraph("There's nothing like the laughter of a baby. Unless it's 1 a.m. and you're home alone.")
         self.assertEqual(2, graph.vertex_count())
+    
+    def test_k_highest_short(self):
+        graph = self.builder.buildGraph("There's nothing like the laughter of a baby. Unless it's 1 a.m. and you're home alone.")
+        self.assertEqual(["There's nothing like the laughter of a baby.", "Unless it's 1 a.m. and you're home alone."], graph.k_highest(10))
     
     def test_vertexes(self):
         sentences = ["There's nothing like the laughter of a baby.", "Unless it's 1 a.m. and you're home alone."]

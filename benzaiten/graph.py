@@ -1,6 +1,7 @@
 import re
 import random
 from itertools import permutations
+from heapq import nlargest
 from math import log10
 
 class GraphBuilder:
@@ -33,7 +34,6 @@ class GraphBuilder:
         '''
         Computes how similar are two sentences. The number of common words and the length of the sentences is taken into consideration.
         '''
-        
         words_s1 = self._extract_words(sentence1)
         words_s2 = self._extract_words(sentence2)
 
@@ -59,8 +59,12 @@ class TextGraph:
     def __iter__(self):
         return iter(self._verteces)
     
+    def k_highest(self, k):
+        return list(map(lambda v: v.sentence, nlargest(k, self._verteces, lambda v: v.score)))
+    
     def vertex_count(self):
         return len(self._verteces)
+
               
 class GraphNode:
     
