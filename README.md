@@ -32,5 +32,5 @@ where:
 
 ### Resources
 
-[TextRank: Bringing Order into Texts](https://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf)
-[Variations of the Similarity Function](https://arxiv.org/pdf/1602.03606.pdf)
+* [TextRank: Bringing Order into Texts](https://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf)
+* [Variations of the Similarity Function](https://arxiv.org/pdf/1602.03606.pdf)

@@ -1,10 +1,7 @@
 import unittest
-from summarization import summarize, sentences
+from benzaiten.summarization import summarize, sentences
 
 class SummarizationTest(unittest.TestCase):
-    
-    def test_empty_text(self):
-        self.assertEqual('', summarize(''))
         
     def test_two_sentences_fullstop(self):
         self.assertEqual(["History is a wheel.", "The nature of man is fundamentally unchanging."], sorted(sentences("History is a wheel. The nature of man is fundamentally unchanging.")))
