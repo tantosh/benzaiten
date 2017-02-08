@@ -59,18 +59,22 @@ class TextGraph:
     def __iter__(self):
         return iter(self._verteces)
     
+    @property
+    def verteces(self):
+        return self._verteces
+    
     def k_highest(self, k):
         return list(map(lambda v: v.sentence, nlargest(k, self._verteces, lambda v: v.score)))
     
-    def vertex_count(self):
-        return len(self._verteces)
-
+    def errors(self):
+        return [vertex.error for vertex in self._verteces]
               
 class GraphNode:
     
     def __init__(self, value, score = random.random(), precision = 4):
         self._value = value
         self._score = score
+        self._error = score
         self._connected = dict()
         self._precision = precision
     
@@ -93,15 +97,20 @@ class GraphNode:
     
     @score.setter
     def score(self, new_score):
+        self._error = round(abs(self._score - new_score), self._precision)
         self._score = new_score
+    
+    @property
+    def error(self):
+        return self._error
     
     @property
     def connected(self):
         return self._connected
     
     def connect(self, node, strength):
-        node.connected[self] = strength
-        self._connected[node] = strength
+        node._add_connection(self, strength)
+        self._add_connection(node, strength)
     
-    def error(self, other):
-        return round(self._score - other.score, self._precision)
+    def _add_connection(self, node, strength):
+        self._connected[node] = strength
