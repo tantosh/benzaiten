@@ -9,11 +9,19 @@ class GraphBuilder:
         self._precision = precision
 
     def buildGraph(self, text):
-        ''' Builds a graph from the given text '''
+        '''
+        Builds a graph from the given text.
+        The verteces of the graph are the sentences in the text.
+        The edges connect two verteces if they are similar to each other.
+        '''
         sentences = self._extract_sentences(text)
         return TextGraph(self._create_verteces(sentences))
     
     def _create_verteces(self, sentences):
+        '''
+        Creates the verteces of the graph from the given list of sentences.
+        Similarity is computed for every pair of sentences. If the sentences are similar, the verteces are connected with weight equal to the similarity between them.
+        '''
         verteces = [GraphNode(sentence) for sentence in sentences]
         for vertex, other in permutations(verteces, 2):
             similarity = self._similarity(vertex.sentence, other.sentence)
@@ -22,7 +30,10 @@ class GraphBuilder:
         return verteces
     
     def _similarity(self, sentence1, sentence2):
-        ''' Get how similar are two sentences. '''
+        '''
+        Computes how similar are two sentences. The number of common words and the length of the sentences is taken into consideration.
+        '''
+        
         words_s1 = self._extract_words(sentence1)
         words_s2 = self._extract_words(sentence2)
 
