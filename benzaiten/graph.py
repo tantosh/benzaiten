@@ -34,6 +34,8 @@ class GraphBuilder:
         '''
         Computes how similar are two sentences. The number of common words and the length of the sentences is taken into consideration.
         '''
+        if sentence1 == '' or sentence2 == '':
+            return 0
         words_s1 = self._extract_words(sentence1)
         words_s2 = self._extract_words(sentence2)
 
