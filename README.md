@@ -4,6 +4,15 @@
 
 A library for automatic text summarization.
 
+## Installation
+
+1. Clone project
+2. Run 'python -m setup.py install'
+
+You should now be able to use the 'bsum' command.
+
+_Note_: If you're running on Windows, check if the installation directory of script is added to your path.
+
 ## TextRank
 
 ### Algorithm
