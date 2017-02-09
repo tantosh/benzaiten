@@ -1,5 +1,7 @@
 # benzaiten
 
+[![Build Status](https://travis-ci.org/tantosh/benzaiten.svg?branch=master)](https://travis-ci.org/tantosh/benzaiten)
+
 A library for automatic text summarization.
 
 ## TextRank
