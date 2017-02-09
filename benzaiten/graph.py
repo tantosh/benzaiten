@@ -23,7 +23,7 @@ class GraphBuilder:
         Creates the verteces of the graph from the given list of sentences.
         Similarity is computed for every pair of sentences. If the sentences are similar, the verteces are connected with weight equal to the similarity between them.
         '''
-        verteces = [GraphNode(sentence) for sentence in sentences]
+        verteces = [GraphNode(sentence, order) for order, sentence in enumerate(sentences)]
         for vertex, other in permutations(verteces, 2):
             similarity = self._similarity(vertex.sentence, other.sentence)
             if similarity:
@@ -64,15 +64,19 @@ class TextGraph:
         return self._verteces
     
     def k_highest(self, k):
-        return list(map(lambda v: v.sentence, nlargest(k, self._verteces, lambda v: v.score)))
+        '''Get k most important sentences, ordered by occurrence in text.'''
+        n_largest = nlargest(k, self._verteces, lambda v: v.score)
+        n_largest.sort(key = lambda sentence: sentence.order)
+        return list(map(lambda v: v.sentence, n_largest))
     
     def errors(self):
         return [vertex.error for vertex in self._verteces]
               
 class GraphNode:
     
-    def __init__(self, value, score = random.random(), precision = 4):
+    def __init__(self, value, order, score = random.random(), precision = 4):
         self._value = value
+        self._order = order
         self._score = score
         self._error = score
         self._connected = dict()
@@ -90,6 +94,10 @@ class GraphNode:
     @property
     def sentence(self):
         return self._value
+    
+    @property
+    def order(self):
+        return self._order
     
     @property
     def score(self):

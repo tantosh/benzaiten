@@ -5,13 +5,14 @@ class GraphTest(unittest.TestCase):
     
     def setUp(self):
         self.builder = GraphBuilder()
-
+        self.short_text = "There's nothing like the laughter of a baby. Unless it's 1 a.m. and you're home alone."
+        
     def test_build_short_text(self):
-        graph = self.builder.buildGraph("There's nothing like the laughter of a baby. Unless it's 1 a.m. and you're home alone.")
+        graph = self.builder.buildGraph(self.short_text)
         self.assertEqual(2, len(graph.verteces))
     
     def test_k_highest_short(self):
-        graph = self.builder.buildGraph("There's nothing like the laughter of a baby. Unless it's 1 a.m. and you're home alone.")
+        graph = self.builder.buildGraph(self.short_text)
         self.assertEqual(["There's nothing like the laughter of a baby.", "Unless it's 1 a.m. and you're home alone."], graph.k_highest(10))
     
     def test_vertexes(self):
