@@ -88,3 +88,6 @@ ENV/
 # Rope project settings
 .ropeproject
 *.sqlite3
+
+# Visual Studio
+*.pyproj
