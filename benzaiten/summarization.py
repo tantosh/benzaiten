@@ -1,4 +1,4 @@
-from graph import GraphBuilder
+from benzaiten.graph import GraphBuilder
 
 class TextRankSummarizer:
     
