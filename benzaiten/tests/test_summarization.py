@@ -22,6 +22,20 @@ class SummarizationTest(unittest.TestCase):
         self.assertEqual(len(expected_text), len(summarized_text))
         self.assertEqual(expected_text, summarized_text)
     
+    def test_order_of_sentences_summarize_long_text(self):
+        _summarizer = TextRankSummarizer(k_sentences = 3)
+        summarized_text = _summarizer.summarize(self.long_text)
+        expected_text = "Scientists from Singapore Management University and the London School of Economics and Political Science conducted a study to find a connection between the place where people live and how satisfied they are with their lives. The scientists suggest that we feel uncomfortable in large communities since our brain is evolutionarily adapted to work in groups of no more than 150 people. However, people with high intelligence have an inverse relationship: clever people feel happier being alone, not when surrounded by other people — even good friends."
+
+        summarized_sentences = summarized_text.split(".")
+        expected_sentences = expected_text.split(".")
+
+        self.assertEqual(len(expected_text), len(summarized_text))
+        self.assertEqual(expected_sentences[0], summarized_sentences[0])
+        self.assertEqual(expected_sentences[1], summarized_sentences[1])
+        self.assertEqual(expected_sentences[2], summarized_sentences[2])
+        self.assertEqual(expected_text, summarized_text)
+    
     def test_calculate_connected(self):
         node1 = GraphNode('One', 0, 2.5)
         node2 = GraphNode('Two', 1, 0.5)
