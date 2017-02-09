@@ -11,7 +11,7 @@ A library for automatic text summarization.
 
 You should now be able to use the 'bsum' command.
 
-_Note_: If you're running on Windows, check if the installation directory of script is added to your path.
+_Note_: If you're running on Windows, check if the installation directory of the script is added to your path.
 
 ## TextRank
 
