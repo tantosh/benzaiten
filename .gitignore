@@ -92,3 +92,7 @@ ENV/
 # Visual Studio
 *.pyproj
 .vs
+
+#Eclipse
+.gitignore.orig
+.project
