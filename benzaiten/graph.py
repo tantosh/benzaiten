@@ -25,22 +25,22 @@ class GraphBuilder:
         '''
         verteces = [GraphNode(sentence, order) for order, sentence in enumerate(sentences)]
         for vertex, other in combinations(verteces, 2):
-            similarity = self._similarity(vertex.sentence, other.sentence)
+            similarity = self._similarity(vertex.words, other.words)
             if similarity:
                 vertex.connect(other, similarity)
         return verteces
     
-    def _similarity(self, sentence1, sentence2):
+    def _similarity(self, words1, words2):
         '''
         Computes how similar are two sentences. The number of common words and the length of the sentences is taken into consideration.
         '''
-        if not sentence1 or not sentence2:
+        if not words1 or not words2:
             return 0
-        words_s1 = self._extract_words(sentence1)
-        words_s2 = self._extract_words(sentence2)
+        #words_s1 = self._extract_words(sentence1)
+        #words_s2 = self._extract_words(sentence2)
 
-        common_words = [w for w in words_s1 if w in words_s2]
-        log_denominator = log10(len(words_s1)) + log10(len(words_s2))
+        common_words = [w for w in words1 if w in words2]
+        log_denominator = log10(len(words1)) + log10(len(words2))
         
         if not log_denominator:
             return 0
@@ -79,6 +79,7 @@ class GraphNode:
     
     def __init__(self, value, order, score = random.random(), precision = 4):
         self._value = value
+        self._words = self._get_words(value)
         self._order = order
         self._score = score
         self._error = score
@@ -97,6 +98,10 @@ class GraphNode:
     @property
     def sentence(self):
         return self._value
+    
+    @property
+    def words(self):
+        return self._words
     
     @property
     def order(self):
@@ -125,3 +130,8 @@ class GraphNode:
     
     def _add_connection(self, node, strength):
         self._connected[node] = strength
+
+    def _get_words(self, sentence):
+        ''' Extract words in a sentence '''
+        only_words = re.sub("[^\w]", " ",  sentence)
+        return re.sub("[to|a|an|the|in|of|on]", "",  only_words).split()
