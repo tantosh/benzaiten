@@ -6,7 +6,7 @@ SECRET_KEY = '6v+)l=fstj=zy!$b4gcwas@jhu6papnilos=_kaa%yrczxbf0v'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['.benzaiten-summary.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',

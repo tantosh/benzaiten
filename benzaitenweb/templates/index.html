@@ -11,7 +11,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="benzaiten_style.css">
+    <link rel="stylesheet" type="text/css" href="../static/benzaiten_style.css">
 </head>
 
 <body>
@@ -21,32 +21,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 
     <div class="container text-center">
-
+        
         <div class="page-header">
-            <h1></h1>
             <h1>Benzaiten <small> Automatic text summarization</small></h1>
-            <h1></h1>
         </div>
-        <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#textinput">Text<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#fileinput">File<span class="sr-only"></span></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        
         <div class="container text-center">
-            </br>
-            <!--<label>Set your text here:</label>-->
+            
             <form action="/" method="post" class="form-horizontal">
                 <div class="form-group">
                     {% csrf_token %}
-                    {{ form }}
-                    </br>
+                    {{ form.as_p }}
+                    
                     <input type="submit" value="Submit" class="btn btn-primary"/>
                 </div>
             </form>
@@ -63,30 +49,6 @@
             {% endif %}
 
         </div>
-        <!--<div class="container">
-            <div id="textinput" class="form-group">
-                <label for="inputText">Original text</label>
-                <textarea class="form-control" id="inputText" rows="10"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>-->
-
-        <!--<div class="container">
-            <div id="textoutput" class="form-group">
-                <label for="inputText">Summary text</label>
-                <div class="form-control" id="inputText" rows="10">
-
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>-->
-        <!--<div class="container">
-            <div id="fileinput" class="form-group">
-                <label for="originalTextFile">Upload file</label>
-                <input type="file" class="form-control-file" id="originalTextFile" aria-describedby="fileHelp">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>-->
 
     </div>
 </body>
