@@ -36,8 +36,6 @@ class GraphBuilder:
         '''
         if not words1 or not words2:
             return 0
-        #words_s1 = self._extract_words(sentence1)
-        #words_s2 = self._extract_words(sentence2)
 
         common_words = [w for w in words1 if w in words2]
         log_denominator = log10(len(words1)) + log10(len(words2))
@@ -50,9 +48,6 @@ class GraphBuilder:
         ''' Extract sentences in a text '''
         return regex.findall(u'([\p{Lu}][^\.!?]*[\.!?]+)', text)
     
-    def _extract_words(self, sentence):
-        ''' Extract words in a sentence '''
-        return regex.sub("[^\w]", " ",  sentence).split()
 
 class TextGraph:
     
@@ -133,5 +128,4 @@ class GraphNode:
 
     def _get_words(self, sentence):
         ''' Extract words in a sentence '''
-        only_words = re.sub("[^\w]", " ",  sentence)
-        return re.sub("[to|a|an|the|in|of|on]", "",  only_words).split()
+        return regex.sub("[^\w]", " ",  sentence).split()

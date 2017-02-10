@@ -16,13 +16,14 @@ class SummarizationTest(unittest.TestCase):
     def test_summarize_long_text(self):
         summarized_text = TextRankSummarizer(k_sentences = 3).summarize(self.long_text)
         expected_text = "Scientists from Singapore Management University and the London School of Economics and Political Science conducted a study to find a connection between the place where people live and how satisfied they are with their lives. The scientists suggest that we feel uncomfortable in large communities since our brain is evolutionarily adapted to work in groups of no more than 150 people. Which means the smarter a person is, the more uncomfortable they feel in large communities."
+        
         self.assertEqual(len(expected_text), len(summarized_text))
         self.assertEqual(expected_text, summarized_text)
     
     def test_order_of_sentences_summarize_long_text(self):
         summarized_text = TextRankSummarizer(k_sentences = 3).summarize(self.long_text)
         expected_text = "Scientists from Singapore Management University and the London School of Economics and Political Science conducted a study to find a connection between the place where people live and how satisfied they are with their lives. The scientists suggest that we feel uncomfortable in large communities since our brain is evolutionarily adapted to work in groups of no more than 150 people. Which means the smarter a person is, the more uncomfortable they feel in large communities."
-
+        
         summarized_sentences = summarized_text.split(".")
         expected_sentences = expected_text.split(".")
 
