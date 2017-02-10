@@ -1,0 +1,1 @@
+web: gunicorn benzaitenweb.wsgi:application --log-file -
