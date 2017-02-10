@@ -17,6 +17,10 @@ class SentenceExtractionTest(unittest.TestCase):
     def test_two_sentences_exclamation(self):
         sentences = self.builder._extract_sentences("No! Don't do that!")
         self.assertEqual(sorted(["No!", "Don't do that!"]), sorted(sentences))
+    
+    def test_two_sentences_exclamation(self):
+        sentences = self.builder._extract_sentences("No! Don't do that!")
+        self.assertEqual(sorted(["No!", "Don't do that!"]), sorted(sentences))
         
     def test_multiple_questions_exclamations(self):
         sentences = self.builder._extract_sentences("What??!! You can't be serious!!!!")
@@ -24,5 +28,5 @@ class SentenceExtractionTest(unittest.TestCase):
         
     def test_one_sentence(self):
         self.assertEqual(["What are you doing?"], self.builder._extract_sentences("What are you doing?"))
-        self.assertEqual(["History is a wheel"], self.builder._extract_sentences("History is a wheel"))
+        self.assertEqual(["That cannot happen!"], self.builder._extract_sentences("That cannot happen!"))
         self.assertEqual(["History is a wheel."], self.builder._extract_sentences("History is a wheel."))

@@ -1,4 +1,4 @@
-import re
+import regex
 import random
 from itertools import combinations
 from heapq import nlargest
@@ -48,11 +48,11 @@ class GraphBuilder:
     
     def _extract_sentences(self, text):
         ''' Extract sentences in a text '''
-        return re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|\!)\s', text)
+        return regex.findall(u'([\p{Lu}][^\.!?]*[\.!?]+)', text)
     
     def _extract_words(self, sentence):
         ''' Extract words in a sentence '''
-        return re.sub("[^\w]", " ",  sentence).split()
+        return regex.sub("[^\w]", " ",  sentence).split()
 
 class TextGraph:
     
