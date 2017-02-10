@@ -1,6 +1,6 @@
 # benzaiten
 
-[![Build Status](https://travis-ci.org/tantosh/benzaiten.svg?branch=master)](https://travis-ci.org/tantosh/benzaiten)
+[![Build Status](https://travis-ci.org/tantosh/benzaiten.svg?branch=master)](https://travis-ci.org/tantosh/benzaiten) [![Coverage Status](https://coveralls.io/repos/github/tantosh/benzaiten/badge.svg)](https://coveralls.io/github/tantosh/benzaiten)
 
 A library for automatic text summarization.
 
