@@ -1,6 +1,6 @@
-import re
+import regex
 import random
-from itertools import permutations
+from itertools import combinations
 from heapq import nlargest
 from math import log10
 
@@ -24,34 +24,30 @@ class GraphBuilder:
         Similarity is computed for every pair of sentences. If the sentences are similar, the verteces are connected with weight equal to the similarity between them.
         '''
         verteces = [GraphNode(sentence, order) for order, sentence in enumerate(sentences)]
-        for vertex, other in permutations(verteces, 2):
-            similarity = self._similarity(vertex.sentence, other.sentence)
+        for vertex, other in combinations(verteces, 2):
+            similarity = self._similarity(vertex.words, other.words)
             if similarity:
                 vertex.connect(other, similarity)
         return verteces
     
-    def _similarity(self, sentence1, sentence2):
+    def _similarity(self, words1, words2):
         '''
         Computes how similar are two sentences. The number of common words and the length of the sentences is taken into consideration.
         '''
-        if sentence1 == '' or sentence2 == '':
+        if not words1 or not words2:
             return 0
-        words_s1 = self._extract_words(sentence1)
-        words_s2 = self._extract_words(sentence2)
 
-        common_words = [w for w in words_s1 if w in words_s2]
-        log_words1 = log10(len(words_s1))
-        log_words2 = log10(len(words_s2))
-    
-        return round(len(common_words) / (log_words1 + log_words2), self._precision)
+        common_words = [w for w in words1 if w in words2]
+        log_denominator = log10(len(words1)) + log10(len(words2))
+        
+        if not log_denominator:
+            return 0
+        return round(len(common_words) / log_denominator, self._precision)
     
     def _extract_sentences(self, text):
         ''' Extract sentences in a text '''
-        return re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|\!)\s', text)
+        return regex.findall(u'([\p{Lu}][^\.!?]*[\.!?]+)', text)
     
-    def _extract_words(self, sentence):
-        ''' Extract words in a sentence '''
-        return re.sub("[^\w]", " ",  sentence).split()
 
 class TextGraph:
     
@@ -78,6 +74,7 @@ class GraphNode:
     
     def __init__(self, value, order, score = random.random(), precision = 4):
         self._value = value
+        self._words = self._get_words(value)
         self._order = order
         self._score = score
         self._error = score
@@ -96,6 +93,10 @@ class GraphNode:
     @property
     def sentence(self):
         return self._value
+    
+    @property
+    def words(self):
+        return self._words
     
     @property
     def order(self):
@@ -124,3 +125,7 @@ class GraphNode:
     
     def _add_connection(self, node, strength):
         self._connected[node] = strength
+
+    def _get_words(self, sentence):
+        ''' Extract words in a sentence '''
+        return regex.sub("[^\w]", " ",  sentence).split()

@@ -2,7 +2,7 @@ from benzaiten.graph import GraphBuilder
 
 class TextRankSummarizer:
     
-    def __init__(self, k_sentences=10, damping_factor=0.85, max_iterations=10000, convergence_threshold=0.0001):
+    def __init__(self, k_sentences=10, max_iterations=10000, damping_factor=0.85, convergence_threshold=0.0001):
         self._k_sentences = k_sentences
         self._damping_factor = damping_factor
         self._max_iterations = max_iterations
