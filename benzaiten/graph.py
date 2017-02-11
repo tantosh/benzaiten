@@ -46,9 +46,8 @@ class GraphBuilder:
     
     def _extract_sentences(self, text):
         ''' Extract sentences in a text '''
-        return regex.findall(u'([\p{Lu}][^\.!?]*[\.!?]+)', text)
+        return regex.findall(u'([^\p{Z}]?[\p{Lu}][^\.!?\n]*[\.!?]*)\n*', text)
     
-
 class TextGraph:
     
     def __init__(self, verteces):

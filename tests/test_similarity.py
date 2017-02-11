@@ -34,5 +34,4 @@ class SimilarityTest(unittest.TestCase):
         self.assertGreater(similarity_similar, similarity_not_so_similar)
     
     def test_extract_words(self):
-        words =  GraphNode("It was a nice day.", 0).words
-        self.assertEqual(sorted(["It", "was", "a", "nice", "day"]), sorted(words))
+        self.assertCountEqual(["It", "was", "a", "nice", "day"], GraphNode("It was a nice day.", 0).words)
