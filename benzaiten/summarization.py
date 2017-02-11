@@ -17,7 +17,8 @@ class TextRankSummarizer:
         self._text_rank(text_graph)
         
         #join most important sentences
-        return ' '.join(text_graph.k_highest(self._k_sentences))
+        #return ' '.join(text_graph.k_highest(self._k_sentences))
+        return text_graph.k_highest(self._k_sentences)
     
     def _text_rank(self, text_graph):
         iteration = 0
